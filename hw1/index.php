@@ -50,6 +50,3 @@ $currentYear = date('Y');
 <body>
 <h1><?= $currentYear ?></h1>
 </body>
-
-
-
