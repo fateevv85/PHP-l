@@ -6,8 +6,8 @@
 */
 function getTime() {
     date_default_timezone_set('Europe/Moscow');
-    $hour =  date('G');
-    $min =  date('i');
+    $hour = date('G');
+    $min = date('i');
     $hourString = '';
     $minString = '';
 
@@ -34,6 +34,5 @@ function getTime() {
 }
 
 echo getTime();
-//echo '<br>';
-//phpinfo();
+
 ?>
