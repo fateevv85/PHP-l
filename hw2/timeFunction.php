@@ -34,5 +34,6 @@ function getTime() {
 }
 
 echo getTime();
-
+//echo '<br>';
+//phpinfo();
 ?>
