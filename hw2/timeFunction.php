@@ -4,35 +4,49 @@
 22 часа 15 минут
 21 час 43 минуты
 */
-function getTime() {
-    date_default_timezone_set('Europe/Moscow');
-    $hour = date('G');
-    $min = date('i');
-    $hourString = '';
-    $minString = '';
 
-    if ($hour == 1 || $hour == 21) {
-        $hourString = ' час ';
-    } elseif ($hour <= 4 || $hour >= 22) {
-        $hourString = ' часа ';
-    } else {
-        $hourString = ' часов ';
+date_default_timezone_set('Europe/Moscow');
+$time = time();
+$hour = date('G', $time);
+$min = date('i', $time);
+
+/*
+ 1. 1 час
+ 2. 2 часа
+ 3. 11 часов
+*/
+$hourArr = [
+    'час', 'часа', 'часов'
+];
+$minArr = [
+    'минута', 'минуты', 'минут'
+];
+
+function comparisonText($value, $arr)
+{
+    if (!is_numeric($value) || !is_array($arr) || $value < 0) {
+        return 'incorrect data!';
     }
 
-    //последняя цифра в минутах
-    $lastNumber = substr($min, -1);
-
-    if ($lastNumber == 1 && $min != 11) {
-        $minString = ' минута.';
-    } elseif (preg_match('/[2-4]/', $lastNumber)) {
-        $minString = ' минуты.';
-    } else {
-        $minString = ' минут.';
+    if (preg_match('/[1][1-9]/', substr($value, -2))) {
+        $teen = true;
     }
 
-    return $hour . $hourString . $min . $minString;
+    $lastNumber = $value % 10;
+
+    if ($lastNumber == 1 && !$teen) {
+        $requiredText = $arr[0];
+    } elseif (preg_match('/[2-4]/', $lastNumber) && !$teen) {
+        $requiredText = $arr[1];
+    } else {
+        $requiredText = $arr[2];
+    }
+
+    return $value . ' ' . $requiredText;
 }
 
-echo getTime();
+echo comparisonText($hour, $hourArr);
+echo ' ';
+echo comparisonText($min, $minArr);
 
 ?>
