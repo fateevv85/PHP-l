@@ -45,8 +45,6 @@ function comparisonText($value, $arr)
     return $value . ' ' . $requiredText;
 }
 
-echo comparisonText($hour, $hourArr);
-echo ' ';
-echo comparisonText($min, $minArr);
+echo comparisonText($hour, $hourArr) . ' ' . comparisonText($min, $minArr);
 
 ?>
