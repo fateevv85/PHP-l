@@ -112,15 +112,13 @@ echo 'Number 1: ' . $c . '<br>Number 2: ' . $d;
 
 function power($val, $pow)
 {
-
-
     if ($pow == 1) {
         return $val;
     }
+    
     $res = $val * power($val, $pow - 1);
 
     return $res;
-
 }
 
 echo '<br>';
