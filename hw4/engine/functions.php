@@ -19,7 +19,10 @@ function uploadFiles()
                 //пути для копирования изображений
                 $destImgSmall = IMAGES_SMALL_DIR . '/' . $fileNameSmall;
                 $destImgOriginal = IMAGES_ORIG_DIR . '/' . $fileName;
-
+                //проверка на длину имени файла, если более 25 символов, обрезаем
+                if (strlen($fileName) > 20) {
+                    $fileName = mb_substr($fileName, 0, 25).'...';
+                }
                 //проверка на тип файла и размер
                 if ($fileType == 'image' && $fileSize <= 10e6) {
                     //мини версию копируем в images/small
@@ -27,22 +30,16 @@ function uploadFiles()
                     //оригинал перемещаем в images/original
                     move_uploaded_file($tmp, $destImgOriginal);
                     //формируем отчет об выполнении
-                    $message[] = "<span class='upload_form__good'>" .
-                        '"' . $fileName . '"' . "</span>" . ' is uploaded!';
-                    //если проверка не пройдена, появятся соответствующие сообщения
+                    $message['good'][] = $fileName;
+                    //если проверка не пройдена, добавляем соответствующие сообщения
                 } elseif ($fileType != 'image') {
-                    $message[] = "<span class='upload_form__bad'>" .
-                        '"' . $fileName . '"' . "</span>" .
-                        ' has unsupported file type! ' . "({$fileType})";
+                    $message['bad_type'][] = $fileName;
                 } else {
-                    $message[] = "<span class='upload_form__bad'>" .
-                        '"' . $fileName . '"' . "</span>" .
-                        ' size is bigger then 10Mb! ' . "({$fileSize})" . '<br>';
+                    $message['bad_size'][] = $fileName;
                 }
             }
         }
     }
-
     return $message;
 }
 

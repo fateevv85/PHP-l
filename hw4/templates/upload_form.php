@@ -1,8 +1,7 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . "/hw4/config/main.php";
 require_once ENGINE_DIR . '/functions.php';
-//получаем массив сообщений об операциях с файлами
-$list = uploadFiles();
+var_dump(uploadFiles());
 ?>
 
 <div class="upload_form_wrapper">
@@ -11,12 +10,22 @@ $list = uploadFiles();
     <form action="" enctype="multipart/form-data" method="post">
       <input type="file" name="file[]" multiple>
       <input type="submit">
-        <!-- формируем список сообщений для кадого файла -->
-        <?php if ($list) { ?>
+      <!-- формируем список сообщений для каждого файла -->
+        <?php if (uploadFiles()) { ?>
           <ul>
-              <?php foreach ($list as $value) { ?>
-                <li> <?= $value ?> </li>
-              <?php } ?>
+              <?php foreach (uploadFiles() as $key => $value) {
+                  for ($i = 0; $i <= count($value) - 1; $i++) {
+                      if ($key == 'good') { ?>
+                        <li><span class='upload_form__good'> <?= $value[$i] ?></span> is uploaded!</li>
+                      <?php } elseif ($key == 'bad_type') { ?>
+                        <li><span class='upload_form__bad'> <?= $value[$i] ?> </span> has unsupported file type! '</li>
+                      <?php } else { ?>
+                        <li><span class='upload_form__bad'> <?= $value[$i] ?></span> has size is bigger then 10Mb!</li>
+                          <?php
+                      }
+                  }
+              }
+              ?>
           </ul>
         <?php } ?>
     </form>
