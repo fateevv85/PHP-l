@@ -1,7 +1,6 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . "/hw4/config/main.php";
 require_once ENGINE_DIR . '/functions.php';
-var_dump(uploadFiles());
 ?>
 
 <div class="upload_form_wrapper">
