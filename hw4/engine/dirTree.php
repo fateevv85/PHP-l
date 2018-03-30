@@ -7,8 +7,10 @@ function dirTree($path)
     if (is_dir($path)) {
         //открывем поток
         $dir = opendir($path);
+
         //пока есть файл или папка
         while ($file = readdir($dir)) {
+
             //если вложенный элемент- папка, не включая "." и ".."
             if (is_dir($path . '/' . $file) && $file != '.' && $file != '..') {
                 //выводим на печать имя папки
@@ -26,6 +28,7 @@ function dirTree($path)
                 $arr[] = "<span style='font-size: .8em;'>{$file}</span><br>";
             }
         }
+
         //после прохождения цикла закрываем список
         $arr[] = "</ul>";
         //выводим на печать

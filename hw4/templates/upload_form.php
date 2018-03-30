@@ -10,16 +10,16 @@ require_once ENGINE_DIR . '/functions.php';
       <input type="file" name="file[]" multiple>
       <input type="submit">
       <!-- формируем список сообщений для каждого файла -->
-        <?php if (uploadFiles()) { ?>
+        <?php if (uploadImg()) { ?>
           <ul>
-              <?php foreach (uploadFiles() as $key => $value) {
+              <?php foreach (uploadImg() as $key => $value) {
                   for ($i = 0; $i <= count($value) - 1; $i++) {
                       if ($key == 'good') { ?>
-                        <li><span class='upload_form__good'> <?= $value[$i] ?></span> is uploaded!</li>
+                        <li><span class='upload_form__good'><?= $value[$i] ?></span> is uploaded!</li>
                       <?php } elseif ($key == 'bad_type') { ?>
-                        <li><span class='upload_form__bad'> <?= $value[$i] ?> </span> has unsupported file type! '</li>
+                        <li><span class='upload_form__bad'><?= $value[$i] ?></span> has unsupported file type!</li>
                       <?php } else { ?>
-                        <li><span class='upload_form__bad'> <?= $value[$i] ?></span> has size is bigger then 10Mb!</li>
+                        <li><span class='upload_form__bad'><?= $value[$i] ?></span> has size bigger then 10Mb!</li>
                           <?php
                       }
                   }

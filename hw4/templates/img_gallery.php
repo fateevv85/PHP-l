@@ -15,6 +15,8 @@ require_once ENGINE_DIR . '/functions.php';
               <img src="<?= $image[0] ?>" alt="image" width="200">
             </a>
           <?php }
-      } ?>
+      } else { ?>
+        <h5>Gallery is empty!</h5>
+      <?php } ?>
   </div>
 </div>

@@ -7,8 +7,10 @@ function removeDir($path)
     if (is_dir($path) && $path != '.' && $path != '..') {
         //открываем ее
         $dir = opendir($path);
+
         //пока в ней что-то есть (кроме точек), запускаем рекурсивно нашу функцию
         while ($file = readdir($dir)) {
+
             if ($file != '.' && $file != '..') {
                 removeDir($path . '/' . $file);
             }
