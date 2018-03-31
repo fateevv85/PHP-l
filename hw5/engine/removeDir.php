@@ -30,5 +30,3 @@ function removeDir($path)
         return print "incorrect argument: '{$path}'";
     }
 }
-
-?>

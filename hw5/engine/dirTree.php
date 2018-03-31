@@ -38,5 +38,3 @@ function dirTree($path)
         $arr[] = "<li>{$path}</li>";
     }
 }
-
-dirTree('../');

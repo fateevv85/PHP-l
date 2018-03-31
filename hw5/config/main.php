@@ -9,4 +9,10 @@ define('IMAGES_DIR', PUBLIC_DIR . '/images');
 define('IMAGES_ORIG_DIR', PUBLIC_DIR . '/images/original');
 define('IMAGES_SMALL_DIR', PUBLIC_DIR . '/images/small');
 
+//sql
+define('HOST', 'localhost');
+define('USER', 'root');
+define('PASSWORD', '1234');
+define('PORT', 3306);
+
 ?>

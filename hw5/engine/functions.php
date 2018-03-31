@@ -29,6 +29,8 @@ function uploadImg()
 
                 //проверка на тип файла и размер
                 if ($fileType == 'image' && $fileSize <= 10e6) {
+                    //проверка на наличие папок, если их нет, то создаем
+                    is_dir(IMAGES_DIR) ?: mkdir(PUBLIC_DIR . '/images');
                     is_dir(IMAGES_SMALL_DIR) ?: mkdir(IMAGES_DIR . '/small');
                     is_dir(IMAGES_ORIG_DIR) ?: mkdir(IMAGES_DIR . '/original');
                     //мини версию копируем в images/small
@@ -55,7 +57,7 @@ function imgPathArray()
 {
     $message = uploadImg();
     //если папки с картинками нет и сообщение об обработке картинок не сформировано, то сообщение об ошибке
-    if (!is_dir(IMAGES_SMALL_DIR) && !$message) {
+    if (!is_dir(IMAGES_DIR) && !$message) {
         return false;
         //если список начинается не с "..", то формируем ссылки
     } elseif (scandir(IMAGES_SMALL_DIR, 1)[0] != '..') {
@@ -64,15 +66,19 @@ function imgPathArray()
         $pathOrig = '../public/images/original/';
 
         while ($file = readdir($source)) {
-
             if ($file != '.' && $file != '..') {
-                //наполняем массив ссылками, где 0 элемент - ссылка на мини картинку, 1 - на оригинальную
-                $imgArray[] = [$pathSmall . $file, $pathOrig . ltrim($file, 'small-')];
+                //наполняем массив информацией о картинках
+                $imgArray[] = [
+                    $pathSmall . $file,                         //путь к миниверсии
+                    $pathOrig . ltrim($file, 'small-'), //к оригиналу
+                    $file,                                      //имя мини
+                    ltrim($file, 'small-'),             //имя оригинала
+                    filesize($pathSmall . $file),      //размер мини
+                    filesize($pathOrig . ltrim($file, 'small-')) //размер оригинала
+                ];
             }
         }
-
         closedir($source);
-
         return $imgArray;
     } else {
         //если папка пуста, то

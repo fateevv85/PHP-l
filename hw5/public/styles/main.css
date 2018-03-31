@@ -5,26 +5,31 @@
 .upload_form_wrapper {
   text-align: center; }
 
-.upload_form {
+.formWrapper {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around; }
+
+.upload_form, .request_form {
   display: inline-block;
   margin: 0 auto;
   border: 1px solid #000;
   padding: 0 10px 10px 10px;
   text-align: center; }
-  .upload_form h5 {
+  .upload_form h5, .request_form h5 {
     margin: 16px 0; }
-  .upload_form form {
+  .upload_form form, .request_form form {
     display: inline-block;
     margin-bottom: 0; }
-    .upload_form form ul {
+    .upload_form form ul, .request_form form ul {
       text-align: left;
       margin-top: 15px;
       list-style: decimal inside; }
-      .upload_form form ul li {
+      .upload_form form ul li, .request_form form ul li {
         position: relative; }
-        .upload_form form ul li .upload_form__good, .upload_form form ul li .upload_form__bad {
+        .upload_form form ul li .upload_form__good, .request_form form ul li .upload_form__good, .upload_form form ul li .upload_form__bad, .request_form form ul li .upload_form__bad {
           position: relative; }
-          .upload_form form ul li .upload_form__good::before, .upload_form form ul li .upload_form__bad::before {
+          .upload_form form ul li .upload_form__good::before, .request_form form ul li .upload_form__good::before, .upload_form form ul li .upload_form__bad::before, .request_form form ul li .upload_form__bad::before {
             content: '';
             position: absolute;
             display: block;
@@ -34,7 +39,7 @@
             left: 0;
             background-color: seagreen;
             opacity: .45; }
-        .upload_form form ul li .upload_form__bad::before {
+        .upload_form form ul li .upload_form__bad::before, .request_form form ul li .upload_form__bad::before {
           background-color: indianred; }
 
 .gallery {
@@ -54,5 +59,10 @@
         box-shadow: 10px 10px 5px 0 rgba(0, 0, 0, 0.75); }
       .gallery .gallery_pictures a img {
         border-radius: 10px; }
+
+.viewBlock {
+  height: 300px;
+  margin: 0 auto;
+  border: 1px solid red; }
 
 /*# sourceMappingURL=main.css.map */
