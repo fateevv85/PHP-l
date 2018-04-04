@@ -3,9 +3,7 @@
   <div class="gallery_pictures">
       <?php if ($images) {
           foreach ($images as $key => $image) : ?>
-            <!--второй элемент массива - оригинал изображения-->
-            <a href="<?= "photo.php?id={$image['id']}" ?>" target="_blank">
-              <!--первый элемент массива - мини-версия-->
+            <a href="photo.php?id=<?=$image['id']?>" target="_blank">
               <img src="<?= $image['url_mini'] ?>" alt="image">
             </a>
           <?php endforeach;
@@ -19,7 +17,7 @@
   <div class="upload_form">
     <h5>Upload your pictures to the gallery!</h5>
     <form action="" enctype="multipart/form-data" method="post">
-      <input type="file" name="files">
+      <input type="file" name="image">
       <input type="submit">
     </form>
   </div>
