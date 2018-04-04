@@ -60,9 +60,7 @@
       .gallery .gallery_pictures a img {
         border-radius: 10px; }
 
-.viewBlock {
-  height: 300px;
-  margin: 0 auto;
-  border: 1px solid red; }
+.image_full-size img {
+  width: 100%; }
 
 /*# sourceMappingURL=main.css.map */

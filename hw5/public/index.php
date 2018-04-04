@@ -1,11 +1,12 @@
 <?php
 header('Content-type: text/html; charset=utf-8');
 include_once $_SERVER['DOCUMENT_ROOT'] . "/hw5/config/main.php";
-require_once ENGINE_DIR . "/functions.php";
+require_once ENGINE_DIR . "/render.php";
+require_once ENGINE_DIR . "/upload.php";
 require_once ENGINE_DIR . "/db.php";
 ?>
 
-<link rel="stylesheet" href="styles/main.css">
+<!--<link rel="stylesheet" href="styles/main.css">-->
 
 <!--
 1. Создать галерею изображений, состоящую из двух страниц:
@@ -17,21 +18,15 @@ require_once ENGINE_DIR . "/db.php";
 -->
 
 <?php
-include TEMPLATES_DIR . '/imgGallery.php';
-?>
 
-<div class="formWrapper">
-<?php
-include TEMPLATES_DIR . '/uploadForm.php';
-include TEMPLATES_DIR . '/requestForm.php';
-?>
-</div>
+$files = getGallery();
 
-<div class="viewBlock">
-  <img src="<?=query()[0]['url'] ?>" alt="" class="request_image">
-</div>
+//загружаем файлы
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    uploadImages(PUBLIC_DIR . '/img');
+    query($files);
+    $files = getGallery();
+}
 
-
-<?php
-connect('close');
+echo renderLayout('gallery.php', ['images' => $files]);
 ?>

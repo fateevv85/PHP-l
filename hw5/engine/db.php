@@ -1,48 +1,48 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . "/hw5/config/main.php";
-require_once ENGINE_DIR . "/functions.php";
+include_once ENGINE_DIR . '/render.php';
 
-function connect($close = '')
+function connect($param, $close = false)
 {
     //если флаг 'close', то закрываем соединение
-    if ($close == 'close') {
-        return mysqli_close(mysqli_connect(HOST, USER, PASSWORD, 'images', PORT));
+    if ($close) {
+        return mysqli_close(mysqli_connect(HOST, USER, PASSWORD, $param, PORT));
     }
-
-    return mysqli_connect(HOST, USER, PASSWORD, 'images', PORT);
+    return mysqli_connect(HOST, USER, PASSWORD, $param, PORT);
 }
 
-
-function query()
+function query($queryArg, $db = IMAGES_DB)
 {
-    //если запрос POST, то обновляем БД
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        //соединяемся
-        $con = connect();
-        //получаем массив информации об изображениях
-        $imgArray = imgPathArray();
-
-        mysqli_query($con, "DELETE FROM image_data WHERE 1 = 1");
-        //передаем его в БД
-        foreach ($imgArray as $key => $value) {
-            mysqli_query($con, "INSERT INTO image_data (url, name, size, size_mini, url_mini, name_mini, views) VALUES ('$value[1]', '$value[3]', $value[5], $value[4], '$value[0]','$value[2]',  0)");
+    $con = connect($db);
+    //если массив, то вносим значения в БД
+    if (is_array($queryArg)) {
+        //CALLBACK!
+        $name = $_FILES['files']['name'];
+        //проверяем, есть ли уже такое значение в БД
+        $result = mysqli_fetch_all(mysqli_query($con, "SELECT * FROM image_data WHERE name = '$name'"));
+        //если нет, получаем информацию об этом файле, и передаем его в БД
+        if (!$result) {
+            $image = getImageInfo($name);
+            mysqli_query($con, "INSERT INTO image_data (name, url, size, url_mini, size_mini, views) VALUES ('$image[0]', '$image[1]', $image[2], '$image[3]', $image[4], 0)");
+        }
+        //если строка, то делаем запрос
+    } elseif (is_string($queryArg)) {
+        //защита от инъекций - экранируем кавычки, меняем спец символы, убираем тэги
+//        $inputText = mysqli_real_escape_string($con, htmlspecialchars(strip_tags($_GET['textId'])));
+        //запрос на чтение
+        if (substr($queryArg,0,6) == 'SELECT' ) {
+            $result = mysqli_fetch_all(mysqli_query($con, $queryArg), MYSQLI_ASSOC);
+            //если результат выборки корректный, то создаем массив с информацией об image ID
+            return $result;
+        } else {
+            mysqli_query($con, $queryArg);
         }
 
-        $result = mysqli_fetch_all(mysqli_query($con, "SELECT * FROM image_data WHERE 1 = 1"), MYSQLI_ASSOC);
-
-        return $result;
-        //если GET, то считываем ID
-    } else {
-        $con = connect();
-            //защита от инъекций - экранируем кавычки, меняем спец символы, убираем тэги
-            $inputText = mysqli_real_escape_string($con, htmlspecialchars(strip_tags($_GET['textId'])));
-            //запрос на чтение
-            $result = mysqli_query($con, "SELECT * FROM image_data WHERE id = {$inputText}");
-            //если результат выборки корректный, то создаем массив с информацией об image ID
-            if ($result) {
-                return mysqli_fetch_all($result, MYSQLI_ASSOC);
-            } else {
-                return 'wrong query!';
-            }
     }
+    mysqli_close($con);
+}
+
+function getGallery()
+{
+    return query("SELECT * FROM image_data ORDER BY views DESC");
 }
