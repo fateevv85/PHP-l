@@ -1,4 +1,12 @@
 <h2>Каталог</h2>
+<form action="">
+  <select name="select" id="">
+      <?php foreach ($category as $value) : ?>
+        <option value="<?= $value['id'] ?>"><?= $value['name'] ?></option>
+      <?php endforeach; ?>
+  </select>
+  <input type="submit" value="Select">
+</form>
 <div class="catalog">
     <?php foreach ($books as $item): ?>
       <div class="catalogGood">
