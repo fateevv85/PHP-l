@@ -1,0 +1,14 @@
+<h2>Каталог</h2>
+<div class="catalog">
+    <?php foreach ($books as $item): ?>
+      <div class="catalogGood">
+        <a href="book.php?id=<?= $item['id'] ?>">
+          <img src="<?= $item['picture_small_url'] ?>" alt="small picture" class="imgCatalog"><br>
+          <span class="descriptionLink"><?= $item['title'] ?>
+            <br>
+            <i><?= $item['author'] ?></i>
+          </span>
+        </a>
+      </div>
+    <?php endforeach; ?>
+</div>

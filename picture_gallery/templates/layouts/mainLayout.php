@@ -9,8 +9,19 @@
   <title>PHP - I</title>
 </head>
 <body>
-<div class="header">HEADER</div>
+<header>
+  <div class="storeLogo"></div>
+  <ul class="menu">
+    <li><a href="#">Главная</a></li>
+    <li><a href="#">Галерея</a></li>
+    <li><a href="#">Калькулятор</a></li>
+    <li><a href="#">Каталог</a></li>
+  </ul>
+</header>
 <div class="content"><?= $content ?></div>
-<div class="footer">FOOTER</div>
+<footer>
+  Fateev Vasiliy
+  &copy; <?= date('Y') ?>
+</footer>
 </body>
 </html>

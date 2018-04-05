@@ -1,0 +1,48 @@
+/* Начало контакты */
+
+.writeUs,
+.adress {
+    float: left;
+    margin: 0 20px 0 0;
+}
+
+input[type="text"],
+input[type="email"] {
+    width: 200px;
+    height: 17px;
+    font-size: 15px;
+    color: dimgray;
+}
+
+input[type="email"]:focus {
+    background-color: #FF9073;
+    color: black;
+}
+
+input[name="Theme"] {
+    font-weight: 600;
+}
+
+textarea {
+    width: 200px;
+    height: 200px;
+    font-size: 15px;
+    color: dimgray;
+    font-style: italic;
+    resize: none;
+}
+
+.buttonForm {
+    width: 101px;
+    font-weight: 600;
+}
+
+iframe {
+    border: 1px solid black;
+}
+
+fieldset {
+    width: 210px;
+}
+
+/* конец контакты */

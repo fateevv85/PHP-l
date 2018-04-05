@@ -1,6 +1,6 @@
 <?php
 
-define('ROOT_DIR', $_SERVER['DOCUMENT_ROOT'] . '/hw5');
+define('ROOT_DIR', $_SERVER['DOCUMENT_ROOT'] . '/picture_gallery');
 define('PUBLIC_DIR', ROOT_DIR . '/public');
 define('ENGINE_DIR', ROOT_DIR . '/engine');
 define('VENDOR_DIR', ROOT_DIR . '/vendor');
@@ -11,6 +11,7 @@ define('IMAGES_SMALL_DIR', PUBLIC_DIR . '/img/small');
 
 //sql
 define('IMAGES_DB', 'images');
+define('BOOKS_DB', 'books');
 define('HOST', 'localhost');
 define('USER', 'root');
 define('PASSWORD', '1234');

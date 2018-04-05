@@ -1,0 +1,143 @@
+
+/* Все, что связано с каталогом  */
+
+.catalog {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.imgCatalog {
+  width: 90px;
+  height: 130px;
+  border: 1px solid #ccc;
+  box-sizing: content-box;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, .3);
+  transition: transform 124ms;
+}
+
+.catalogGood {
+  margin-right: 53px;
+  width: 150px;
+  height: 208px;
+}
+
+.catalog div:nth-child(4){
+  margin-right: 0;
+}
+
+.descriptionLink {
+  font-size: 13px;
+}
+
+.catalogGood:hover img {
+  box-shadow: 0 0 7px 0 #7A207D;
+  transform: scale(1.05)
+}
+
+.catalogGood:hover span {
+  color: #8b00ff;
+  background-color: #CCCCCC;
+}
+
+.imgGoods, .imgBack {
+  width: 100px;
+  height: 170px;
+  position: relative;
+  opacity: 1;
+  background-color: #000;
+  transition: opacity 124ms linear, transform 124ms linear;
+}
+
+.imgGoods:hover {
+  opacity: .6;
+  transform: scale(1.02);
+}
+
+.imgBack:hover::after {
+  content: "Увеличить";
+  font-weight: 600;
+  position: absolute;
+  color: #fff;
+  font-size: 12px;
+  top: 79px;
+  left: 20px;
+  border: 3px solid #000;
+  border-radius: 7px;
+  background-color: #000;
+}
+
+.nameImg {
+  position: relative;
+}
+
+.shortDescription {
+  position: absolute;
+  top: 40px;
+  left: 140px;
+}
+
+.goodsHeader {
+  color: black;
+  font-size: 18px;
+  font-weight: 400;
+  background-color: #eaeaea;
+}
+
+.propertyList {
+  list-style-image: url(../site_img/literature_thebook_3708.png);
+  font-size: 14px;
+  font-weight: 100;
+}
+
+.shortDescription {
+  color: #707070;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.shortDescription div {
+  font-style: italic;
+  text-indent: 17px;
+}
+
+.buying {
+  margin-top: 20px;
+  font-weight: 600;
+  width: 100px;
+  height: 35px;
+  display: block;
+  border-radius: 5px;
+  color: white;
+  background-color: #6EE768;
+  text-align: center;
+  line-height: 35px;
+}
+
+.buying:hover {
+  background-color: #42E73A;
+  box-shadow: 0 0 5px 0 #42E73A;
+}
+
+.buying:active {
+  background-color: #138900;
+  box-shadow: 0 0 5px 0 #138900;
+}
+
+.longDescription div {
+  text-indent: 17px;
+  line-height: 24px;
+}
+
+.shortDescription div::first-letter {
+  font-family: serif;
+  color: red;
+  font-size: 20px;
+}
+
+.longDescription div::first-letter {
+  font-family: serif;
+  color: red;
+  font-size: 30px;
+}
+
+/* Конец каталога */

@@ -14,6 +14,14 @@ function renderTemplate($template, $params = [])
 {
     ob_start();
     extract($params);
-    include TEMPLATES_DIR . "/{$template}";
+
+    if (is_array($template)) {
+        foreach ($template as $value) {
+            include TEMPLATES_DIR . "/{$value}";
+        }
+    } else {
+        include TEMPLATES_DIR . "/{$template}";
+    }
+
     return ob_get_clean();
 }
