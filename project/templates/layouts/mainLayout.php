@@ -12,10 +12,10 @@
 <header>
   <div class="storeLogo"></div>
   <ul class="menu">
-    <li><a href="#">Главная</a></li>
-    <li><a href="#">Галерея</a></li>
-    <li><a href="#">Калькулятор</a></li>
-    <li><a href="#">Каталог</a></li>
+    <li><a href="index.php">Главная</a></li>
+    <li><a href="gallery.php">Галерея</a></li>
+    <li><a href="calc.php">Калькулятор</a></li>
+    <li><a href="catalog.php">Каталог</a></li>
   </ul>
 </header>
 <div class="content"><?= $content ?></div>

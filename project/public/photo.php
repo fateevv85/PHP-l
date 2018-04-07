@@ -10,14 +10,6 @@ $image = query("SELECT * FROM image_data WHERE id = $id", 'one');
 
 query("UPDATE image_data SET views = views + 1 WHERE id = $id");
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $name = $_POST['name'];
-    $comment = $_POST['comment'];
-    query("INSERT INTO comments (name, content, picture_id) 
-                      VALUES ('$name', '$comment', '$id')");
-}
-
-$comments = getComments($id);
+include PUBLIC_DIR . '/comment.php';
 
 echo renderLayout(['image.php', 'comment.php'], ['image' => $image, 'comments' => $comments]);
-?>

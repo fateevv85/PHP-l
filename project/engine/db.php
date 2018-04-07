@@ -35,10 +35,10 @@ function query($queryArg, $number = null, $db = null)
 function executeQuery($query, $db = null)
 {
     $result = htmlspecialchars(strip_tags($query));
-    if ($db) {
-        return mysqli_query(getConnection($db), $result);
-    }
-    return mysqli_query(getConnection(), $result);
+
+    $connect = $db ? getConnection($db):getConnection();
+
+    return mysqli_query($connect, $result);
 }
 
 function getConnection($dbName = IMAGES_DB)
@@ -50,7 +50,6 @@ function getConnection($dbName = IMAGES_DB)
     }
 
     return $con;
-//    mysqli_close($con);
 }
 
 function getGallery()

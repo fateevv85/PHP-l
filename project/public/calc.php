@@ -10,6 +10,3 @@ $arr = $_REQUEST;
 $result = mathOperation($arr['digit1'], $arr['digit2'], $arr['action']);
 
 echo renderLayout('calc.php', ['result' => $result]);
-?>
-
-
