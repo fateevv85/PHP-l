@@ -1,0 +1,19 @@
+<h5>Hello, <?= $userName ?>!</h5>
+<div><?= $message ?></div>
+<form action="" method="post" name="logoutform">
+  <input type="submit" value="Log out" name="logout">
+</form>
+<div>Your cart orders:</div>
+<div class="cart_orders">
+    <?php foreach ($books as $key => $book) : ?>
+    <ul>
+        <?php foreach ($book as $value) : ?>
+      <li><?= $value ?></li>
+    <?php endforeach; ?>
+      </ul>
+    <?php endforeach; //var_dump($books); ?>
+</div>
+<form action="" method="post">
+  <input type="submit" name="clear_cart" id="clear_cart" value="Clear cart">
+  <input type="submit" name="submit_cart" id="submit_cart" value="Save cart">
+</form>

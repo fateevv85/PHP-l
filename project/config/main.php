@@ -1,6 +1,6 @@
 <?php
 
-define('ROOT_DIR', $_SERVER['DOCUMENT_ROOT'] . '/picture_gallery');
+define('ROOT_DIR', $_SERVER['DOCUMENT_ROOT'] . '/project');
 define('PUBLIC_DIR', ROOT_DIR . '/public');
 define('ENGINE_DIR', ROOT_DIR . '/engine');
 define('VENDOR_DIR', ROOT_DIR . '/vendor');

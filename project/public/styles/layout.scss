@@ -1,9 +1,9 @@
-* {
-  margin: 0;
-  padding: 0;
+html {
+  height: 100%;
 }
 
 body {
+  height: 100%;
   font-family: sans-serif;
   background-color: #f8f8f8;
   margin: 0;
@@ -14,10 +14,13 @@ header {
   border-bottom: 1px solid #000;
   height: 65px;
   text-align: left;
+  //margin: 0 20px;
 }
 
 .menu {
   margin: 0;
+  display: flex;
+  flex-flow: row nowrap;
 }
 
 .menu li {
@@ -26,7 +29,7 @@ header {
   font-family: serif;
   font-size: 20px;
   font-weight: 600;
-  float: left;
+  width: 1/5*100%;
 }
 
 .menu li:hover {
@@ -48,7 +51,6 @@ header {
 
 .menu li a {
   display: block;
-  width: 110px;
   height: 65px;
   line-height: 65px;
 }
@@ -72,21 +74,26 @@ a {
   color: #fff;
 }
 
-.content {
-  height: 100%;
-  //text-align: left;
+.content_wrapper {
   margin: 0 20px;
+  height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.content {
+  flex-grow: 1;
+  padding: 15px 0;
 }
 
 /* подвал */
 
 
 footer {
-  margin: -51px auto 0;
   padding: 10px 10px 0 0;
   background: #ccc;
   border-top: 1px solid #000;
   text-align: center;
   height: 40px;
-  clear: both;
+  flex-shrink: 0;
 }

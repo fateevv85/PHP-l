@@ -5,4 +5,11 @@ require_once ENGINE_DIR . "/render.php";
 require_once ENGINE_DIR . "/upload.php";
 require_once ENGINE_DIR . "/db.php";
 
-echo renderLayout('index.php');
+//загружаем файлы
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    uploadImages();
+}
+
+$files = getGallery();
+
+echo renderLayout('gallery.php', ['images' => $files]);

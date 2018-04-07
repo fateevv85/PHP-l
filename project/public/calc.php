@@ -1,5 +1,5 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . "/picture_gallery/config/main.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/project/config/main.php";
 include_once ENGINE_DIR . '/math.php';
 include_once ENGINE_DIR . '/render.php';
 /*1. Создать форму-калькулятор с операциями: сложение, вычитание, умножение, деление. Не забыть обработать деление на ноль! Выбор операции можно осуществлять с помощью тега <select>.

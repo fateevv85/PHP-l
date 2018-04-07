@@ -9,19 +9,23 @@
   <title>PHP - I</title>
 </head>
 <body>
-<header>
-  <div class="storeLogo"></div>
-  <ul class="menu">
-    <li><a href="index.php">Главная</a></li>
-    <li><a href="gallery.php">Галерея</a></li>
-    <li><a href="calc.php">Калькулятор</a></li>
-    <li><a href="catalog.php">Каталог</a></li>
-  </ul>
-</header>
-<div class="content"><?= $content ?></div>
-<footer>
-  Fateev Vasiliy
-  &copy; <?= date('Y') ?>
-</footer>
+
+<div class="content_wrapper">
+  <header>
+    <div class="storeLogo"></div>
+    <ul class="menu">
+      <li><a href="index.php">Главная</a></li>
+      <li><a href="gallery.php">Галерея</a></li>
+      <li><a href="calc.php">Калькулятор</a></li>
+      <li><a href="catalog.php">Каталог</a></li>
+      <li><a href="cart.php">Cart</a></li>
+    </ul>
+  </header>
+  <div class="content"><?= $content ?></div>
+  <footer>
+    Fateev Vasiliy
+    &copy; <?= date('Y') ?>
+  </footer>
+</div>
 </body>
 </html>

@@ -11,7 +11,9 @@
     <?php foreach ($books as $item): ?>
       <div class="catalogGood">
         <a href="book.php?id=<?= $item['id'] ?>">
-          <img src="<?= $item['picture_small_url'] ?>" alt="small picture" class="imgCatalog"><br>
+          <img src="<?= $item['picture_small_url'] ?>" alt="small picture" class="imgCatalog">
+<!--          <span class="book_root"></span>-->
+          <br>
           <span class="descriptionLink"><?= $item['title'] ?>
             <br>
             <i><?= $item['author'] ?></i>
