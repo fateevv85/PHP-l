@@ -16,9 +16,9 @@
           <br>
           <span class="descriptionLink"><?= $item['title'] ?>
             <br>
-            <i><?= $item['author'] ?></i>
+            <i><?= $item['author: '] ?></i>
           </span>
         </a>
       </div>
-    <?php endforeach; ?>
+    <?php endforeach;  //var_dump($books); ?>
 </div>

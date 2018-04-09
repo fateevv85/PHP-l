@@ -1,6 +1,6 @@
 <?php
 
-//дл яформы логина
+//для формы логина
 function getUser($login, $pass)
 {
     //если пользователь есть, то
@@ -32,4 +32,22 @@ VALUES ('$login', '$pass', '{$data['new_name']}', {$data['new_phone']}, '{$data[
     }
 
     return $res;
+}
+
+/** время длительности сессии
+ * @param $start
+ * время старта (параметр $_SESSION['start_time'], задается при логИНе)
+ * @param int $duration
+ *длительность активности сессии, в сек.
+ */
+function sessionTime($start, $duration = 60) {
+    $now = time();
+    $duration = 60;
+    if ($now > $start + $duration) {
+        session_start();
+        unset($_SESSION['login']);
+        header('Location: cart.php');
+    } else {
+        $_SESSION['start_time'] = time();
+    }
 }

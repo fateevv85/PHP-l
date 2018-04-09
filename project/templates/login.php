@@ -5,7 +5,9 @@
   <label for="password">Password</label>
   <input type="password" id="password" name="password">
   <input type="submit" value="Log in">
+</form>
   <br>
+<form action="registration.php" method="post">
   <input type="submit" value="registration" name="reg">
 </form>
 <div><?= $message ?></div>

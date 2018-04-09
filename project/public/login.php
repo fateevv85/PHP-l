@@ -12,14 +12,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_SESSION['login'] = 1;
         $_SESSION['name'] = $user['name'];
         $_SESSION['id'] = $user['id'];
+        $_SESSION['start_time'] = time();
+        header('Location: cart.php');
         //если нажата кнопка logout, уничтожаем сессию
     } elseif ($_POST['logout']) {
         session_start();
         $_SESSION = array();
         session_destroy();
-        //если нажата кнопка регистрации, то переход на страницу регистрации
-    } elseif ($_POST['reg']) {
-        header('Location: registration.php');
         //если пользователя нет, то сообщение
     } else {
         $message = 'Incorrect login/password!';

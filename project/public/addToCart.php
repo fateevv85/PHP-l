@@ -1,7 +1,4 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'] . "/project/config/main.php";
-require_once ENGINE_DIR . "/render.php";
-require_once ENGINE_DIR . "/db.php";
 
 session_start();
 

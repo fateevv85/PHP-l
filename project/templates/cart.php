@@ -5,13 +5,18 @@
 </form>
 <div>Your cart orders:</div>
 <div class="cart_orders">
-    <?php foreach ($books as $key => $book) : ?>
-    <ul>
-        <?php foreach ($book as $value) : ?>
-      <li><?= $value ?></li>
-    <?php endforeach; ?>
-      </ul>
-    <?php endforeach; //var_dump($books); ?>
+    <?php foreach ($books as $book) : ?>
+      <div class="order_item">
+        <ul>
+            <?php foreach ($book as $key => $value) : ?>
+              <li><b><?= $key?></b><?=$value ?></li>
+            <?php endforeach; ?>
+        </ul>
+        <form action="deleteItem.php" method="post">
+          <input type="submit" name="<?= $book['id'] ?>" value="delete order">
+        </form>
+      </div>
+    <?php endforeach; //var_dump($_SESSION) ?>
 </div>
 <form action="" method="post">
   <input type="submit" name="clear_cart" id="clear_cart" value="Clear cart">

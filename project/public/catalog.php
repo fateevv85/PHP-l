@@ -10,9 +10,7 @@ $categoryId = $_GET['select'];
 
 //если категория выбрана, то выбираем соответствующие товары
 if ($categoryId) {
-    $books = array_filter($books, function ($book) use ($categoryId) {
-        return $book['category_id'] == $categoryId;
-    });
+    $books = getCategories($categoryId);
 }
 
 echo renderLayout('catalog.php', ['books' => $books, 'category' => $categories]);

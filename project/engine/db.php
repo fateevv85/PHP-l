@@ -101,16 +101,17 @@ function getBooks($number = null)
         $string = " WHERE product.id = $number";
         $count = 1;
     } elseif (is_array($number)) {
-        $fields = "SELECT product.title, ";
+        $fields = "SELECT product.id AS `id: `, product.title AS `название: `, ";
         $string = " WHERE product.id IN (" . implode(',', $number) . ")";
     } else {
+        $fields = "SELECT product.id, product.title, product.picture_small_url, ";
         $string = null;
     }
 
     return query($fields .
-        "author.name AS `author`,
-        publisher.name AS `publisher`,
-        category.name AS `category`
+        "author.name AS `author: `,
+        publisher.name AS `publisher: `,
+        category.name AS `category: `
         FROM product 
         LEFT JOIN author ON product.author_id = author.id
         LEFT JOIN publisher ON product.publisher_id = publisher.id
@@ -129,4 +130,14 @@ inner join order_products on product.id = order_products.product_id
 inner join customers on order_products.customer_id = customers.id
 inner join author on product.author_id = author.id
 inner join publisher on product.publisher_id = publisher.id  where order_products.customer_id = {$_SESSION['id']}", '', BOOKS_DB);
+}
+
+//выборка категорий для каталога
+function getCategories($id)
+{
+    return query("SELECT product.*, category.name AS `category` FROM product 
+LEFT JOIN author ON product.author_id = author.id
+LEFT JOIN category ON product.category_id = category.id
+LEFT JOIN publisher p ON product.publisher_id = p.id
+ WHERE category.id = {$id};", '', BOOKS_DB);
 }
