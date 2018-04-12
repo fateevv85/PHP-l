@@ -1,0 +1,15 @@
+* {
+  margin: 0;
+  padding: 0; }
+
+.order_item li {
+  list-style-position: inside; }
+
+.delete_item {
+  width: 100px;
+  height: 25px;
+  border: 1px solid black;
+  background-color: indianred;
+  border-radius: 3px; }
+
+/*# sourceMappingURL=cart.css.map */

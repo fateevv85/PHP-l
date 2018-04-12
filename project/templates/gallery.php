@@ -3,7 +3,7 @@
   <div class="gallery_pictures">
       <?php if ($images) {
           foreach ($images as $key => $image) : ?>
-            <a href="photo.php?id=<?=$image['id']?>" target="_blank">
+            <a href="photo?id=<?=$image['id']?>" target="_blank">
               <img src="<?= $image['url_mini'] ?>" alt="image">
             </a>
           <?php endforeach;
@@ -12,7 +12,6 @@
       <?php } ?>
   </div>
 </div>
-
 <div class="upload_form_wrapper">
   <div class="upload_form">
     <h5>Upload your pictures to the gallery!</h5>

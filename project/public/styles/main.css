@@ -1,5 +1,6 @@
 @charset "UTF-8";
 @import url(books.css);
+@import url(tabMenu.css);
 html {
   height: 100%; }
 
@@ -139,5 +140,42 @@ footer {
 
 .image_full-size img {
   width: 100%; }
+
+* {
+  margin: 0;
+  padding: 0; }
+
+.order_item {
+  margin: 10px auto; }
+  .order_item li {
+    list-style-position: inside; }
+
+.delete_item, .save_cart, .clear_cart {
+  width: 100px;
+  height: 25px;
+  background-color: indianred;
+  border-radius: 3px;
+  text-align: center;
+  line-height: 26px;
+  display: inline-block; }
+
+.save_cart {
+  background-color: #42E73A; }
+
+.clear_cart {
+  background-color: brown; }
+
+.cart_orders {
+  border-bottom: 2px solid black; }
+
+.cart_total_sum {
+  display: inline-block; }
+
+.cart_item_sum {
+  display: inline-block; }
+
+.cart_total {
+  height: 50px;
+  line-height: 50px; }
 
 /*# sourceMappingURL=main.css.map */

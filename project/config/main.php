@@ -8,6 +8,8 @@ define('UPLOADS_DIR', ROOT_DIR . '/uploads');
 define('TEMPLATES_DIR', ROOT_DIR . '/templates');
 define('IMAGES_DIR', PUBLIC_DIR . '/img');
 define('IMAGES_SMALL_DIR', PUBLIC_DIR . '/img/small');
+define('IMAGES_BOOKS_DIR', PUBLIC_DIR . '/booksImage');
+define('PAGES_DIR', ROOT_DIR . '/pages');
 
 //sql
 define('IMAGES_DB', 'images');

@@ -1,8 +1,4 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'] . "/project/config/main.php";
-require_once ENGINE_DIR . "/render.php";
-require_once ENGINE_DIR . "/db.php";
-
 $books = getBooks();
 //считываем все категории из БД
 $categories = query("SELECT * FROM category", null, BOOKS_DB);

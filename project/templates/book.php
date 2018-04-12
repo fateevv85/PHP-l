@@ -14,7 +14,7 @@
     <div>Это хорошая книга!</div>
     <div class="price">Цена:</div>
     <div class="book_price"><?= $book['price'] ?></div>
-    <a href="addToCart.php?id=<?= $book['id'] ?>" class="buying">Купить</a>
+    <div data-id="<?= $book['id'] ?>" class="buying">Купить</div>
   </div>
 </div>
 <div class="property">
@@ -38,3 +38,4 @@
       <?= $book['description'] ?>
   </div>
 </div>
+<script src='../js/addToCart.js'></script>

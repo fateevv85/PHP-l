@@ -11,7 +11,7 @@ include_once ENGINE_DIR . '/render.php';
  * если указано, то БД, отличная от image
  * @return array|null
  */
-function query($queryArg, $number = null, $db = null)
+function query($queryArg, $number = null, $db = null, $id = false)
 {
     //если массив, то вносим значения в БД
     if (is_array($queryArg)) {
@@ -33,7 +33,12 @@ function query($queryArg, $number = null, $db = null)
             //если результат выборки корректный, то создаем массив с информацией об image ID
             return $result;
         } else {
-            executeQuery($queryArg, $db);
+            if ($id) {
+                return executeQuery($queryArg, $db, $id);
+            } else {
+                executeQuery($queryArg, $db);
+            }
+
         }
     }
 }
@@ -46,12 +51,16 @@ function query($queryArg, $number = null, $db = null)
  * если указано, то БД, отличная от image
  * @return bool|mysqli_result
  */
-function executeQuery($query, $db = null)
+function executeQuery($query, $db = null, $id = false)
 {
     $result = htmlspecialchars(strip_tags($query));
     $connect = $db ? getConnection($db) : getConnection();
-
-    return mysqli_query($connect, $result);
+    if ($id) {
+        mysqli_query($connect, $result);
+        return mysqli_insert_id($connect);
+    } else {
+        return mysqli_query($connect, $result);
+    }
 }
 
 /** устанавливает соединение
@@ -101,7 +110,7 @@ function getBooks($number = null)
         $string = " WHERE product.id = $number";
         $count = 1;
     } elseif (is_array($number)) {
-        $fields = "SELECT product.id AS `id: `, product.title AS `название: `, ";
+        $fields = "SELECT product.id AS `id`, product.title AS `title`, product.price AS `price`, ";
         $string = " WHERE product.id IN (" . implode(',', $number) . ")";
     } else {
         $fields = "SELECT product.id, product.title, product.picture_small_url, ";
@@ -109,9 +118,9 @@ function getBooks($number = null)
     }
 
     return query($fields .
-        "author.name AS `author: `,
-        publisher.name AS `publisher: `,
-        category.name AS `category: `
+        "author.name AS `author`,
+        publisher.name AS `publisher`,
+        category.name AS `category`
         FROM product 
         LEFT JOIN author ON product.author_id = author.id
         LEFT JOIN publisher ON product.publisher_id = publisher.id
@@ -140,4 +149,17 @@ LEFT JOIN author ON product.author_id = author.id
 LEFT JOIN category ON product.category_id = category.id
 LEFT JOIN publisher p ON product.publisher_id = p.id
  WHERE category.id = {$id};", '', BOOKS_DB);
+}
+
+function addBook($arr)
+{
+    extract($arr);
+
+    if ($authorName = query("SELECT * FROM author WHERE name = $author", 1, BOOKS_DB)) {
+        $author_id = $authorName['id'];
+    } else {
+        $author_id = query("INSERT INTO author (name) VALUE ($author)", '', BOOKS_DB, true);
+    }
+
+    return query("INSERT INTO product (title, publisher_id, category_id, price, author_id, description, picture_small_url, picture_url) VALUES ('$title', '')");
 }

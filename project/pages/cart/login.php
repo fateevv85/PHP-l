@@ -12,15 +12,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_SESSION['login'] = 1;
         $_SESSION['name'] = $user['name'];
         $_SESSION['id'] = $user['id'];
+        $_SESSION['account'] = $user['account'];
         $_SESSION['start_time'] = time();
-        header('Location: cart.php');
+        if ($user['account'] == 'user') {
+            redirect('cart');
+        } elseif ($user['account'] == 'admin') {
+            redirect('admin');
+        }
         //если нажата кнопка logout, уничтожаем сессию
     } elseif ($_POST['logout']) {
-        session_start();
-        $_SESSION = array();
-        session_destroy();
+        logout();
         //если пользователя нет, то сообщение
     } else {
-        $message = 'Incorrect login/password!';
+        $message = 'incorrect_login';
     }
 }
