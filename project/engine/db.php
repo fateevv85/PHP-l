@@ -130,15 +130,15 @@ function getBooks($number = null)
 /** возращает сохраненную в БД корзину
  * @return array|null
  */
-function getCart()
+function getCart($id)
 {
     return query("SELECT product.id, product.title, order_products.customer_id, 
                                     product.price, customers.name as `customer`, author.name as `author`, 
-                                    publisher.name as `publisher` from product
+                                    publisher.name as `publisher`, order_products.count from product
 inner join order_products on product.id = order_products.product_id
 inner join customers on order_products.customer_id = customers.id
 inner join author on product.author_id = author.id
-inner join publisher on product.publisher_id = publisher.id  where order_products.customer_id = {$_SESSION['id']}", '', BOOKS_DB);
+inner join publisher on product.publisher_id = publisher.id  where order_products.customer_id = {$id}", '', BOOKS_DB);
 }
 
 //выборка категорий для каталога
@@ -151,6 +151,8 @@ LEFT JOIN publisher p ON product.publisher_id = p.id
  WHERE category.id = {$id};", '', BOOKS_DB);
 }
 
+//для админки, в работе
+/*
 function addBook($arr)
 {
     extract($arr);
@@ -162,4 +164,4 @@ function addBook($arr)
     }
 
     return query("INSERT INTO product (title, publisher_id, category_id, price, author_id, description, picture_small_url, picture_url) VALUES ('$title', '')");
-}
+}*/

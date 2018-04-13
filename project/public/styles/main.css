@@ -165,9 +165,6 @@ footer {
 .clear_cart {
   background-color: brown; }
 
-.cart_orders {
-  border-bottom: 2px solid black; }
-
 .cart_total_sum {
   display: inline-block; }
 
@@ -175,7 +172,12 @@ footer {
   display: inline-block; }
 
 .cart_total {
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
   height: 50px;
   line-height: 50px; }
+
+.cart_buttons {
+  padding: 10px 0; }
 
 /*# sourceMappingURL=main.css.map */

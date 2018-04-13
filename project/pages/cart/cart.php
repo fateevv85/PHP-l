@@ -11,6 +11,18 @@ if (isset($_SESSION['login']) && !empty($_SESSION['login'])) {
     sessionTime($_SESSION['start_time'], 1200);
 
     $userName = $_SESSION['name'];
+    $userId = $_SESSION['id'];
+
+    //если есть сохраненные заказы в БД, сохраняем их в сессию и выводим в корзине
+    if ($order = getCart($userId)) {
+//        var_dump($order);
+        $books = $order;
+        foreach ($order as $value) {
+            if (!in_array($value['id'], $_SESSION['order'])) {
+                $_SESSION['order'][] = $value['id'];
+            }
+        }
+    }
 
     if ($userName == 'admin') {
         redirect('admin');
@@ -19,19 +31,6 @@ if (isset($_SESSION['login']) && !empty($_SESSION['login'])) {
     if (isset($_SESSION['book']) && !empty($_SESSION['book'])) {
         //делаем запрос к БД на информацию о книгах, добавленных в корзину
         $books = getBooks($_SESSION['book']);
-    }
-
-    //удаляем товары из корзины (сессии)
-    if ($_POST['clear_cart']) {
-        unset($_SESSION['book']);
-        redirect('cart');
-    }
-
-    //заносим товары в базу
-    //пока не готово
-    if ($_POST['submit_cart']) {
-        var_dump($_SESSION);
-        //query("");
     }
 
     //рендерим только корзину, передаем массив книг, имя пользователя и дату последнего входа

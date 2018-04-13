@@ -18,7 +18,9 @@
                 </li>
               <?php endforeach; ?>
           </ul>
-          <div>Количество: <input type="number" min="1" max="10" value="1" class="count_item"></div>
+          <div>Количество:
+            <input type="number" min="1" max="10" value="1" class="count_item">
+          </div>
           <div>Цена:
             <div class="cart_item_sum"><?= $book['price'] ?></div>
             рублей
@@ -26,17 +28,16 @@
           <div class="delete_item" data-id="<?= $book['id'] ?>">Delete item</div>
         </div>
       <?php endforeach; ?>
+    <div class="cart_total">Итого:
+      <div class="cart_total_sum"></div>
+      рублей
+    </div>
+    <div class="cart_buttons">
+      <div class="clear_cart">Clear cart</div>
+      <div class="save_cart">Save cart</div>
+    </div>
   </div>
-  <div class="cart_total">Итого:
-    <div class="cart_total_sum"></div>
-    рублей
-  </div>
-  <!--<form action="" method="post">
-    <input type="submit" name="clear_cart" id="clear_cart" value="Clear cart">
-    <input type="submit" name="submit_cart" id="submit_cart" value="Save cart">
-  </form>-->
-    <div class="clear_cart">Clear cart</div>
-    <div class="save_cart">Save cart</div>
+
 
 <?php endif; ?>
 <script src="../js/cartActivity.js"></script>

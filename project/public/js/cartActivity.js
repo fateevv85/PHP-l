@@ -9,6 +9,23 @@
 
     saveCart();
 
+    itemCost();
+
+    clearCart();
+
+    //при загрузке из корзины вычисялет произведение количества и цены каждого товара
+    function itemCost() {
+      $('.order_item').each(function (i, el) {
+        if ($(el).find('span[data-type="count"]').length > 0) {
+          var count = $(el).find('span[data-type="count"]').text();
+          var price = $(el).find('span[data-type="price"]').text();
+          $(el).find('.count_item').val(count);
+          $(el).find('.cart_item_sum').text(count * price);
+        }
+      });
+      totalSum();
+    }
+
     //calculating total sum
     function totalSum() {
       var sum = 0;
@@ -55,20 +72,39 @@
     //save cart to bd
     function saveCart() {
       $('.save_cart').click(function () {
-        var arr = [];
+        var orderArr = [];
         //получаем из корзины ID и количество для каждого товара и передаем ПОСТом
         $('.order_item').each(function (i, el) {
           var id = $(el).find('span[data-type="id"]').text();
           var count = $(el).find('.count_item').val();
-          arr.push({id:id, count:count});
+          orderArr.push({id: id, count: count});
         });
         $.post({
           url: '/project/public/cart/saveCart',
           // dataType: 'json',
-          data: {arr:arr}
-          // success: function (responce) {
-          //   alert(responce);
-          // }
+          data: {
+            order: orderArr
+          },
+          success: function (responce) {
+            alert(responce);
+          }
+        })
+      });
+    }
+
+    function clearCart() {
+      $('.clear_cart').click(function () {
+        $.post({
+          url: '/project/public/cart/clearCart',
+          // dataType: 'json',
+          data: {
+            cart: 'clear'
+          },
+          success: function (responce) {
+            alert(responce);
+          }
+        }).done(function () {
+          $('.cart_orders').remove();
         })
       });
     }
